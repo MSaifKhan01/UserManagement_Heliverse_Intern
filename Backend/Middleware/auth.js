@@ -1,20 +1,21 @@
-const jwt=require("jsonwebtoken")
+const jwt = require("jsonwebtoken");
 
-const auth=(req,res,next)=>{
-    const token=req.headers.authorization
-    if(token){
-       const decoded= jwt.verify(token,'jammi')
-       if(decoded){
-        req.body.userID=decoded.userID
-        next()
-       }else{
-        res.status(400).send({"Msz":"Plz Login First"})
-       }
-    }else{
-        res.status(400).send({"msz":"Didn't Login"})
-    }
-}
+const auth = (req, res, next) => {
+  const token = req.headers.authorization;
 
-module.exports={
-    auth
-}
+  try {
+    let actualToken = token;
+    console.log('Actual Token:', actualToken);
+    // Decode and verify the token
+    const decoded = jwt.verify(actualToken, 'jammi');
+    console.log('Decoded Token:', decoded);
+
+    req.body.userID = decoded.userID;
+    next();
+  } catch (error) {
+    console.error('Token Verification Error:', error);
+    res.status(401).send({ "Msz": "Unauthorized" });
+  }
+};
+
+module.exports = { auth };
