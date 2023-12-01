@@ -4,8 +4,9 @@ require("dotenv").config();
 const cors = require("cors");
 const { connecting } = require("./Config/db");
 const { userModel } = require("./Models/user");
-
-
+const { teamModel } = require("./Models/team");
+const { auth } = require("./Middleware/auth");
+const jwt = require("sendwebtoken");
 
 const app = express();
 app.use(express.json());
@@ -139,6 +140,90 @@ app.delete("/api/users/:id", async (req, res) => {
   } catch (error) {
     console.error("Error deleting user:", error);
     res.status(500).send({ error: "Internal Server Error" });
+  }
+});
+app.post("/api/users/login", async (req, res) => {
+  let { email } = req.body;
+  try {
+    const user = await userModel.findOne({ email });
+    if (user) {
+      res.status(200).send({
+        msg: "Login successfully",
+        user,
+        token: jwt.sign({ userID: user._id }, "jammi", { expiresIn: "3h" }),
+      });
+    } else {
+      res.status(400).send({ msg: "Login failed" });
+    }
+  } catch (err) {
+    res.status(400).send({ msg: err.message }); 
+  }
+});
+
+
+// POST /api/team
+app.post("/api/team", auth, async (req, res) => {
+  try {
+    const token = req.headers.authorization;
+    const decoded = jwt.verify(token, "jammi");
+
+
+    const { memberId } = req.body;
+
+   
+    const existingTeam = await teamModel.findOne({ userID: decoded.userID });
+
+    if (!existingTeam) {
+     
+      const newTeam = new teamModel({
+        userID: decoded.userID,
+        members: [{ data: memberId }],
+      });
+
+      
+      await newTeam.save();
+
+      res.status(201).send(newTeam);
+    } else {
+      
+      const isTeamMember = existingTeam.members.some((ele) =>
+        ele.data.equals(memberId)
+      );
+
+      if (isTeamMember) {
+        return res.status(400).send({ msg: "Member Already in the Team" });
+      }
+
+      // Adding the new member to the existing team
+      existingTeam.members.push({ data: memberId });
+
+     
+      await existingTeam.save();
+
+      res.status(201).send(existingTeam);
+    }
+  } catch (error) {
+    console.error("Error creating team:", error);
+    res.status(500).send({ error: "Internal Server Error" });
+  }
+});
+// GET /api/team/:id
+app.get("/api/team/:id", async (req, res) => {
+  const token = req.headers.authorization;
+  const decoded = jwt.verify(token, "jammi");
+  const { id } = req.params; 
+
+  try {
+    if (decoded) {
+      const team = await teamModel
+        .findOne({ userID: decoded.userID })
+        .populate("members.data");
+
+      console.log(team);
+      res.status(200).send(team);
+    }
+  } catch (err) {
+    res.status(400).send({ msz: err.message });
   }
 });
 
