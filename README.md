@@ -21,7 +21,7 @@
 
 ## Overview
 
-The User Management System is a robust MERN stack application designed for efficient user, team, and authentication management. This README provides a comprehensive guide to the system's features, setup, and components.
+The User Management System is a robust MERN stack application designed for efficient user, team, and authentication management. 
 
 ## Features
 
