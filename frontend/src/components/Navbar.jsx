@@ -7,7 +7,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   const logout = () => {
     localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("token");
     navigate("/");
   };
 
@@ -19,45 +19,52 @@ const Navbar = () => {
           alt=""
         />
       </div>
-      {auth ?<ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
+      {auth ? (
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
 
-        <li>
-          <Link to="/Register">Sign Up</Link>
-        </li>
+          <li>
+          <Link to="/user/add">Add A User</Link>
+          </li>
 
-        <li>
-          <Link to="/Files">File Management</Link>
-        </li>
-
-        <li>
-         
-            <Link onClick={logout} to="/">
-              Logout   ({auth})
-            </Link>
           
-        </li>
-      </ul>
-      :
+          <li> <Link to="/user/Team">Your Team</Link></li>
 
-      <ul className="nav-ul nav-right">
-        <li>
-          <Link to="/">Home </Link>
-        </li>
+          <li>
+            <Link onClick={logout} to="/">
+              Logout ({auth})
+            </Link>
+          </li>
+        </ul>
+      ) : (
+        <ul className="nav-ul nav-right">
+          <li>
+            <Link to="/">Home </Link>
+          </li>
 
-        <li>
-          <Link to="/Register">Sign Up</Link>
-        </li>
+          <li>
+            <Link to="/user/add">Add A User</Link>
+          </li>
 
-        <li>
-          <Link to="/Login">Login</Link>
-        </li>
-      </ul>
-}
+          <li>
+            <Link to="/Login">Login</Link>
+          </li>
+         
+        </ul>
+      )}
     </nav>
   );
 };
 
 export default Navbar;
+
+
+
+
+      
+     
+
+      
+   

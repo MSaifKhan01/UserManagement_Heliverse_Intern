@@ -1,25 +1,30 @@
 import { Routes, Route } from "react-router-dom";
-import UserList from "./userList";
-import UpdateUserForm from "./updateUser";
-import UserDetails from "./userCard";
-import AddUserForm from "./AddUser";
-import Login from "./Login";
-import TeamDetails from "./Team";
-import Navbar from "./Navbar";
+
+
+
+
+
+import UserListPage from "../Pages/UserListPage";
+import LoginPage from "../Pages/LoginPage";
+import UpdateUserPage from "../Pages/UpdateUserPage";
+import UserDetailsPage from "../Pages/UserDetailsPage";
+import AddUserPage from "../Pages/AddUserPage";
+import TeamPage from "../Pages/TeamPage";
+
 
 function Path() {
   return (
     <Routes>
       
-      <Route path="/" element={<UserList />} />
-      <Route path="/nav" element={<Navbar />} />
+      <Route path="/" element={<UserListPage />} />
+      
 
-      <Route path="/Login" element={<Login />} />
-      <Route path="/update/:id" element={<UpdateUserForm />} />
-      <Route path="/user/:id" element={<UserDetails />} />
+      <Route path="/Login" element={<LoginPage />} />
+      <Route path="/update/:id" element={<UpdateUserPage />} />
+      <Route path="/user/:id" element={<UserDetailsPage />} />
 
-      <Route path="/user/add" element={<AddUserForm />} />
-      <Route path="/user/Team" element={<TeamDetails />} />
+      <Route path="/user/add" element={<AddUserPage />} />
+      <Route path="/user/Team" element={<TeamPage />} />
     </Routes>
   );
 }

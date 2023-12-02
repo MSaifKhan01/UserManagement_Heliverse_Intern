@@ -18,7 +18,9 @@ const Login = () => {
   
       sessionStorage.setItem('userID', response.data.user._id);
       sessionStorage.setItem('token', response.data.token);
-      console.log(response.data)
+      localStorage.setItem('user', response.data.user.first_name+" "+ response.data.user.last_name);
+      console.log(response.data.user.first_name+" "+ response.data.user.last_name)
+   
 
       Swal.fire({
         title: `Hello! ${response.data.user.first_name
