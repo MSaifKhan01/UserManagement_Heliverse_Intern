@@ -44,12 +44,15 @@ userRouter.get("/users", async (req, res) => {
       query.available = req.query.available;
     }
 
-    const page = Number(req.query.page);
+    const page = Number(req.query.page); 
     const limit = 20;
-    let usersDataLength = await userModel.find().count();
-    let totalPage = Math.ceil(usersDataLength / 20);
+    let usersDataLength= await userModel.find().count()
+    totalPage=Math.ceil(usersDataLength / 20)
+    // console.log("totalPages",totalPage)
 
+    // searching functionality
     if (req.query.search) {
+      // regular expression for case-insensitive search
       query.$or = [
         { first_name: { $regex: req.query.search, $options: "i" } },
         { last_name: { $regex: req.query.search, $options: "i" } },
@@ -62,12 +65,14 @@ userRouter.get("/users", async (req, res) => {
     let users;
 
     if (page) {
+      // If page is provided, apply pagination
       users = await userModel.find(query).skip((page - 1) * limit).limit(limit);
     } else {
+      // If page is not provided, return all users
       users = await userModel.find(query);
     }
 
-    res.status(200).send({ users, totalPage });
+    res.status(200).send({users,totalPage});
   } catch (error) {
     
     res.status(500).send({ error: "Internal Server Error" });
