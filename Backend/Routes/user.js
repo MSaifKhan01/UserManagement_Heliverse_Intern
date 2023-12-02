@@ -84,13 +84,16 @@ userRouter.get("/users/:id", async (req, res) => {
   try {
     const userId = req.params.id;
 
+    
     const user = await userModel.findById(userId);
 
     if (!user) {
       return res.status(404).send({ msg: "User not found" });
     }
 
-    res.status(200).send({ user });
+    
+
+    res.status(200).send(user);
   } catch (error) {
    
     res.status(500).send({ error: "Internal Server Error" });
