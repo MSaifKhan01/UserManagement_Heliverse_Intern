@@ -1,0 +1,44 @@
+nav {
+    background-color: #1d3557;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+  }
+  
+  #logo {
+    max-width: 100px;
+    height: auto;
+    padding: 10px;
+    background-color: #fff;
+    border-radius: 50%;
+  }
+  
+  #logo img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+  
+  nav ul {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    gap: 20px;
+  
+    @media (max-width: 768px) {
+      gap: 10px;
+    }
+  }
+  
+  nav li {
+    margin: 0 10px;
+  }
+  
+  nav a {
+    text-decoration: none;
+    color: #fff;
+    font-weight: bold;
+    font-size: 18px;
+  }
