@@ -1,0 +1,26 @@
+
+
+.user-details {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.user-card {
+  max-width: 300px;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  animation: shake 0.5s ease-in-out infinite;
+}
+
+.user-card img {
+  width: 100%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 12px;
+}
+

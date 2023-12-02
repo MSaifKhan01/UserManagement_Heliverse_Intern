@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import Swal from 'sweetalert2';
+import "../CSS/updateUser.css"
 
 const UpdateUserForm = () => {
   const [first_name, setFirstName] = useState("");
@@ -91,12 +92,7 @@ const UpdateUserForm = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-      {/* <input
-        type="text"
-        placeholder="Enter gender"
-        value={gender}
-        onChange={(e) => setGender(e.target.value)}
-      /> */}
+     
       <input
         type="text"
         placeholder="Enter avatar URL"

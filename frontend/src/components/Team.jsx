@@ -1,6 +1,7 @@
 // TeamDetails.js
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import "../CSS/Team.css"
 
 const TeamDetails = () => {
   const [teamMembers, setTeamMembers] = useState([]);
@@ -12,7 +13,7 @@ const TeamDetails = () => {
         const token = sessionStorage.getItem("token");
         const userID = sessionStorage.getItem("userID");
 
-        // Assuming you have a route to fetch team members from the backend
+      
         const response = await axios.get(`https://usermanagement-g8b8.onrender.com/api/team/${userID}`,{
             headers: {
                 Authorization: token ? `${token}` : "",
@@ -29,7 +30,10 @@ const TeamDetails = () => {
   }, []);
 
   return (
-    <div className="team-details-container">
+<div>
+<h1>Your Team Members</h1>
+<div className="team-details-container">
+      
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {teamMembers.map((member) => (
         <div key={member._id} className="member-card">
@@ -44,6 +48,7 @@ const TeamDetails = () => {
         </div>
       ))}
     </div>
+</div>
   );
 };
 

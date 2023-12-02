@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import "../CSS/AddUser.css"
 
 const AddUserForm = () => {
   const [formData, setFormData] = useState({
@@ -18,7 +19,7 @@ const AddUserForm = () => {
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
 
-    // Use the type to determine the input type and handle the change accordingly
+    // Using the type to determine the input type and handle the change accordingly
     const newValue = type === 'checkbox' ? checked : value;
 
     setFormData((prevData) => ({ ...prevData, [name]: newValue }));
@@ -33,7 +34,7 @@ const AddUserForm = () => {
       console.log(response.msg)
       console.log('User added:', response.data);
 
-      // Reset the form data
+      // Reseting the form data after updating a user
       setFormData({
         first_name: '',
         last_name: '',

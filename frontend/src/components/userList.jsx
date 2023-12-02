@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
+import "../CSS/UserList.css"
 
 const UserList = () => {
   const [users, setUsers] = useState([]);
@@ -100,9 +101,10 @@ const UserList = () => {
   }, [searchQuery, page, filters]);
 
   return (
-    <div>
+    <div className="mainBox">
       <div className="filterBoxes">
         <div>
+        <label>Search by any field Name</label>
           <input
             type="text"
             placeholder="Search by name"
@@ -171,21 +173,23 @@ const UserList = () => {
               Add To Team
             </button>
             <button onClick={() => handleDeleteUser(user._id)}>Delete</button>
-            <button>
+            <button className="Lnk">
               <Link to={"/update/" + user._id}>Update User</Link>
             </button>
           </div>
         ))}
       </div>
-      <div class="btnsContainer">
+     <div c>
+     <div className="btnsContainer">
         {Array(totalPages)
           .fill()
           .map((ele, index) => (
-            <button key={index + 1} onClick={() => handlePageChange(index + 1)}>
-              {index + 1}
-            </button>
+            <div> <button key={index + 1} onClick={() => handlePageChange(index + 1)}>
+            {index + 1}
+          </button></div>
           ))}
       </div>
+     </div>
     </div>
   );
 };

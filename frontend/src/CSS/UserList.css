@@ -1,0 +1,75 @@
+.mainBox {
+  box-sizing: border-box;
+}
+.filterBoxes {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: #457b9d;
+  color: #fff;
+}
+
+.filterBoxes div {
+  margin-right: 10px;
+}
+
+.user-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.user-card {
+  max-width: 300px;
+  margin: 6px;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.user-card img {
+  width: 80%;
+  height: auto;
+  border-radius: 50%;
+  margin-bottom: 8px;
+}
+
+.Lnk a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.btnsContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  overflow-x: hidden;
+
+  /* position: fixed;
+  bottom: 0;
+  left: 0; */
+
+  box-sizing: border-box;
+}
+
+.btnsContainer button {
+  background-color: #fff;
+  color: #457b9d;
+  border: none;
+  padding: 10px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+  margin: 5px;
+  white-space: nowrap;
+}
+
+.btnsContainer button:hover {
+  background-color: #1d3557;
+  color: #fff;
+}
+

@@ -1,0 +1,38 @@
+
+
+.team-details-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: stretch; 
+  }
+  
+  .member-card {
+    flex: 1; 
+    max-width: 200px;
+    margin: 16px;
+    padding: 16px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .member-card img {
+    width: 100%;
+    height: auto;
+    border-radius: 50%;
+    margin-bottom: 12px;
+  }
+  
+  .member-card p {
+    margin-bottom: 8px;
+  }
+  
+  /* Add media query for responsiveness */
+  @media screen and (max-width: 600px) {
+    .team-details-container {
+      justify-content: center;
+    }
+  }
+  
